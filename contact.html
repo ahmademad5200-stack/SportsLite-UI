@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-[#121212] font-tajawal overflow-x-hidden w-full relative">
+
+    <div id="header"></div>
+    
+    <div class="w-full bg-[#121212] py-12 flex items-center justify-center m-10 gap-3 sm:gap-6 px-4" dir="rtl">
+        <div class="h-[2px] flex-shrink w-12 sm:w-32 md:w-64 lg:w-80 bg-gradient-to-r from-[#FF5900] to-transparent rounded-full"></div>
+        <h2 class="text-white text-xl sm:text-2xl md:text-3xl font-bold whitespace-nowrap">
+            تواصل معنا
+        </h2>
+        <div class="h-[2px] flex-shrink w-12 sm:w-32 md:w-64 lg:w-80 bg-gradient-to-l from-[#FF5900] to-transparent rounded-full"></div>
+    </div>
+
+    <div class="w-full max-w-[1200px] mx-auto px-4 md:px-8 py-16">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            
+            <!-- التعديل هنا: استخدام form بدلاً من div وإضافة id="contactForm" -->
+            <form id="contactForm" class="flex flex-col gap-6 w-full order-2 lg:order-1">
+                
+                <div class="flex flex-col gap-2">
+                    <label class="text-white text-sm font-bold text-right" for="contactName">الاسم الكامل</label>
+                    <input type="text" id="contactName" placeholder="ادخل اسمك هنا" required
+                           class="w-full bg-[#242424] text-white placeholder-gray-500 border border-[#FF5900]/40 focus:border-[#FF5900] rounded-lg px-4 py-3 outline-none transition-colors">
+                </div>
+                
+                <div class="flex flex-col gap-2">
+                    <label class="text-white text-sm font-bold text-right" for="contactEmail">البريد الالكتروني</label>
+                    <input type="email" id="contactEmail" placeholder="example@domain.com" dir="ltr" required
+                           class="w-full bg-[#242424] text-white placeholder-gray-500 border border-[#FF5900]/40 focus:border-[#FF5900] rounded-lg px-4 py-3 outline-none transition-colors text-left">
+                </div>
+                
+                <div class="flex flex-col gap-2">
+                    <label class="text-white text-sm font-bold text-right" for="contactPhone">رقم الهاتف</label>
+                    <input type="tel" id="contactPhone" placeholder="(+963) 0933333333" dir="ltr" required
+                           class="w-full bg-[#242424] text-white placeholder-gray-500 border border-[#FF5900]/40 focus:border-[#FF5900] rounded-lg px-4 py-3 outline-none transition-colors text-left">
+                </div>
+                
+                <div class="flex flex-col gap-2">
+                    <label class="text-white text-sm font-bold text-right" for="contactMessage">الموضوع</label>
+                    <textarea id="contactMessage" rows="4" placeholder="اكتب رسالتك هنا..." required
+                              class="w-full bg-[#242424] text-white placeholder-gray-500 border border-[#FF5900]/40 focus:border-[#FF5900] rounded-lg px-4 py-3 outline-none transition-colors resize-none"></textarea>
+                </div>
+                
+                <!-- التعديل هنا: إضافة type="submit" للزر -->
+                <button type="submit" id="contactSubmitBtn" class="w-full bg-[#FF5900] hover:bg-orange-600 text-white font-bold text-lg py-3.5 rounded-full transition-colors shadow-lg shadow-orange-500/20 mt-2">
+                    إرسال
+                </button>
+            </form>
+
+            <div class="flex flex-col items-center lg:items-start w-full gap-8 order-1 lg:order-2 mt-4 lg:mt-0">
+                
+                <div class="w-full bg-[#242424] rounded-[20px] p-8 md:p-10 shadow-xl flex flex-col gap-10 border border-gray-800">
+                    <h3 class="text-[#FF5900] text-2xl md:text-3xl font-bold text-center w-full">معلومات تواصل</h3>
+                    
+                    <ul class="flex flex-col gap-8 w-full">
+                        <li class="flex items-center gap-5">
+                            <i class="fa-solid fa-location-dot text-[#FF5900] text-2xl md:text-3xl shrink-0 w-8 text-center"></i>
+                            <span class="text-gray-200 text-base md:text-lg">سوريا , حلب , المحافظة</span>
+                        </li>
+                        <li class="flex items-center gap-5">
+                            <i class="fa-solid fa-phone-flip text-[#FF5900] text-2xl md:text-3xl shrink-0 w-8 text-center"></i>
+                            <span class="text-gray-200 text-base md:text-lg" dir="ltr">0963 933333333</span>
+                        </li>
+                        <li class="flex items-center gap-5">
+                            <i class="fa-solid fa-envelope text-[#FF5900] text-2xl md:text-3xl shrink-0 w-8 text-center"></i>
+                            <span class="text-gray-200 text-base md:text-lg" dir="ltr">Sports Lite @gmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-5">
+                            <i class="fa-solid fa-clock text-[#FF5900] text-2xl md:text-3xl shrink-0 w-8 text-center"></i>
+                            <span class="text-gray-200 text-base md:text-lg">اوقات الدوام من 8 صباحاً حتى 6 مساءً</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="flex items-center justify-center w-full gap-8 mt-2" dir="ltr">
+                    <a href="#" class="text-[#FF5900] hover:text-white transition-colors hover:scale-110">
+                        <i class="fa-brands fa-square-facebook text-3xl md:text-4xl"></i>
+                    </a>
+                    <a href="#" class="text-[#FF5900] hover:text-white transition-colors hover:scale-110">
+                        <i class="fa-brands fa-instagram text-3xl md:text-4xl"></i>
+                    </a>
+                    <a href="#" class="text-[#FF5900] hover:text-white transition-colors hover:scale-110">
+                        <i class="fa-brands fa-x-twitter text-3xl md:text-4xl"></i>
+                    </a>
+                    <a href="#" class="text-[#FF5900] hover:text-white transition-colors hover:scale-110">
+                        <i class="fa-brands fa-youtube text-3xl md:text-4xl"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="footer"></div>
+
+    <div id="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="scripts/app.js"></script>
+    
+    <script src="scripts/ui/header.js"></script>
+    <script src="scripts/ui/footer.js"></script>
+    
+    <script src="scripts/api/messages-api.js"></script>
+    <script src="scripts/ui/contact.js"></script>
+</body>
+</html>

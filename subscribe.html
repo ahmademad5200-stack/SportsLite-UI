@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطط الاشتراك | SportSLite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-[#121212] text-white">
+
+    <div id="header"></div>
+
+    <section class="max-w-6xl mx-auto py-20 px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">اختر خطة <span class="text-[#FF5900]">اشتراكك</span></h2>
+            <p class="text-gray-400 text-lg">اختر الخطة التي تناسب أهدافك التدريبية وابدأ رحلتك الآن</p>
+        </div>
+
+        <div id="plans-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            </div>
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/ui/header.js"></script>
+    <script src="scripts/ui/footer.js"></script>
+    <script src="scripts/api/subscription-plans-api.js"></script>
+    <script src="scripts/ui/subscription-plans.js"></script>
+</body>
+</html>

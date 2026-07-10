@@ -1,0 +1,14 @@
+body { font-family: 'Tajawal', sans-serif; background-color: #121212; }
+        
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+/* ظلال قوية وواضحة جداً كما طلبت */
+.shadow-right-bottom {
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 1);
+}
+.shadow-bottom {
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 1);
+}
+.shadow-left-bottom {
+    box-shadow: -20px 20px 40px rgba(0, 0, 0, 1);
+}
