@@ -1,4 +1,4 @@
-name: Deploy Frontend Project
+name: Deploy to Hostinger
 
 on:
   push:
@@ -12,14 +12,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      # ملاحظة: حذفنا خطوات npm install و npm run build
+      
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # اتركها فارغة لرفع كل ملفات المستودع، أو حدد مجلد الكود
           local-dir: ./ 
           server-dir: ./
+          # استبعاد ملفات Git و GitHub من الرفع للاستضافة
           exclude: |
             **/.git*
             **/.github*

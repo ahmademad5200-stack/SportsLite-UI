@@ -20,7 +20,7 @@ const headerHtmlCode = `
             <div class="nav-line h-[2px] w-full bg-gradient-to-r from-orange-300 to-[#FF5900] rounded-full hidden"></div>
         </div>
         <div class="nav-item flex flex-col items-center gap-1 cursor-pointer">
-            <a href="healthnews.html" class="nav-link text-gray-300 hover:text-[#FF5900] transition duration-300" data-path="healthnews.html">الاخبار</a>
+            <a href="healthnews.html" class="nav-link text-gray-300 hover:text-[#FF5900] transition duration-300" data-path="healthnews.html">الانظمة الغذائية</a>
             <div class="nav-line h-[2px] w-full bg-gradient-to-r from-orange-300 to-[#FF5900] rounded-full hidden"></div>
         </div>
         <div class="nav-item flex flex-col items-center gap-1 cursor-pointer">

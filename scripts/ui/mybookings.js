@@ -1,5 +1,3 @@
-// /scripts/ui/mybookings.js
-
 async function fetchAndDisplayBookings() {
     const container = document.getElementById('bookings-container');
     const traineeId = localStorage.getItem('trainee_id');
@@ -14,7 +12,33 @@ async function fetchAndDisplayBookings() {
         let hasAnyBooking = false;
         let htmlContent = '';
 
-        // 1. حجوزات المدربين
+        // === 1. جلب وعرض باقة الاشتراك (الخدعة الذكية) ===
+        const activePlanStr = localStorage.getItem('my_active_plan');
+        if (activePlanStr) {
+            hasAnyBooking = true;
+            const activePlan = JSON.parse(activePlanStr);
+            htmlContent += `
+                <div class="bg-[#242424] p-6 rounded-2xl border-2 border-[#FF5900] flex flex-col md:flex-row justify-between items-center gap-4 mb-6 relative overflow-hidden shadow-[0_0_15px_rgba(255,89,0,0.2)]">
+                    <div class="absolute top-0 right-0 bg-[#FF5900] text-white text-xs font-bold px-4 py-1 rounded-bl-lg">باقتك الحالية</div>
+                    <div class="text-center md:text-right mt-4 md:mt-0">
+                        <h3 class="text-2xl font-bold text-white mb-2">
+                            الاشتراك: <span class="text-[#FF5900]">${activePlan.name}</span>
+                        </h3>
+                        <p class="text-gray-400 text-sm">
+                            <i class="fa-regular fa-calendar-check ml-1"></i> تاريخ التفعيل: ${activePlan.date}
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 mt-4 md:mt-0">
+                        <span class="bg-orange-900/30 text-[#FF5900] px-4 py-1.5 rounded-full text-sm font-bold border border-orange-800">نشط</span>
+                        <button onclick="cancelPlan()" class="bg-transparent hover:bg-red-500 text-red-500 hover:text-white px-5 py-2 rounded-xl text-sm font-bold transition border border-red-500">
+                            إلغاء الباقة
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // === 2. حجوزات المدربين الحقيقية من API ===
         const trainersResponse = await fetch('https://sportslite.app/api/v1/bookings/');
         const trainersResult = await trainersResponse.json();
 
@@ -37,9 +61,7 @@ async function fetchAndDisplayBookings() {
                             </div>
                             <div class="flex items-center gap-4 mt-4 md:mt-0">
                                 <span class="bg-blue-900/30 text-blue-400 px-4 py-1.5 rounded-full text-xs font-bold border border-blue-800">موعد مدرب</span>
-                                <button onclick="cancelBooking(${booking.id})" class="bg-transparent hover:bg-red-500 text-red-500 hover:text-white px-5 py-2 rounded-xl text-sm font-bold transition border border-red-500">
-                                    إلغاء الحجز
-                                </button>
+                                <button onclick="cancelBooking(${booking.id})" class="bg-transparent hover:bg-red-500 text-red-500 hover:text-white px-5 py-2 rounded-xl text-sm font-bold transition border border-red-500">إلغاء الحجز</button>
                             </div>
                         </div>
                     `;
@@ -47,7 +69,7 @@ async function fetchAndDisplayBookings() {
             }
         }
 
-        // 2. حجوزات البرامج
+        // === 3. حجوزات البرامج الحقيقية من API ===
         const programsResponse = await fetch(`https://sportslite.app/api/v1/trainee-programs/?trainee_id=${traineeId}`);
         const programsResult = await programsResponse.json();
 
@@ -78,14 +100,33 @@ async function fetchAndDisplayBookings() {
             }
         }
 
-        container.innerHTML = hasAnyBooking ? htmlContent : '<p class="text-center text-gray-400">لا توجد لديك أي حجوزات حالياً.</p>';
+        container.innerHTML = hasAnyBooking ? htmlContent : '<p class="text-center text-gray-400">لا توجد لديك أي حجوزات أو اشتراكات حالياً.</p>';
     } catch (error) {
         showNotification('error', "حدث خطأ أثناء تحميل الحجوزات.");
     }
 }
 
-// دالة الإلغاء الاحترافية
-async function cancelBooking(bookingId) {
+// دالة الإلغاء للباقة (الخدعة)
+window.cancelPlan = function() {
+    Swal.fire({
+        title: 'إلغاء الباقة؟',
+        text: "هل أنت متأكد من إلغاء اشتراكك الحالي؟",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'نعم، إلغاء!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.removeItem('my_active_plan');
+            showNotification('success', "تم إلغاء باقتك بنجاح!");
+            fetchAndDisplayBookings(); // إعادة تحميل العرض
+        }
+    });
+};
+
+// دالة الإلغاء للحجوزات الحقيقية
+window.cancelBooking = async function(bookingId) {
     Swal.fire({
         title: 'هل أنت متأكد؟',
         text: "لن تتمكن من استعادة هذا الحجز بعد إلغائه!",
@@ -114,6 +155,6 @@ async function cancelBooking(bookingId) {
             }
         }
     });
-}
+};
 
 document.addEventListener('DOMContentLoaded', fetchAndDisplayBookings);

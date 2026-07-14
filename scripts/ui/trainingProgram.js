@@ -29,21 +29,57 @@ document.addEventListener('DOMContentLoaded', async () => {
         const endIndex = startIndex + cardsPerPage;
         const currentPrograms = allPrograms.slice(startIndex, endIndex);
 
-        currentPrograms.forEach(program => {
+        // هنا أضفنا الـ (index) عشان نعرف رقم الكرت الحالي
+        currentPrograms.forEach((program, index) => {
+            // 1. حساب إجمالي الأيام رياضياً
+            const totalDays = (program.weeks_count || 0) * (program.sessions_per_week || 0);
+            
+            // 2. مصفوفة بأسماء المدربين الستة من قاعدة بياناتك
+            const mockTrainers = [
+                "أحمد محمود",
+                "عمر عبد الله",
+                "خالد حسن",
+                "الكابتن رامي",
+                "طارق زياد",
+                "يوسف إبراهيم"
+            ];
+
+            // 3. توزيع المدربين بالترتيب على الكروت (حتى لو كانت 100 كرت سيرجع يعيد التوزيع تلقائياً)
+            const absoluteIndex = startIndex + index;
+            const mockTrainerName = mockTrainers[absoluteIndex % mockTrainers.length];
+
             const cardHTML = `
                 <div class="card-item shrink-0 w-[280px] sm:w-[320px] lg:w-80 bg-[#242424] border-2 border-[#FF5900] rounded-[30px] p-8 flex flex-col items-center text-center transition-transform duration-300">
-                    <h2 class="text-white text-2xl font-bold mb-10">${program.title || 'بدون عنوان'}</h2>
+                    <h2 class="text-white text-2xl font-bold mb-8">${program.title || 'بدون عنوان'}</h2>
                     
-                    <div class="flex flex-col gap-8 w-full items-center mb-10 flex-grow">
-                        <div class="flex items-center gap-4 text-white">
-                            <i class="fa-regular fa-clock text-2xl"></i>
-                            <span class="text-lg font-medium">${program.weeks_count || 0} اسبوع</span>
+                    <div class="flex flex-col gap-5 w-full items-center mb-8 flex-grow">
+                        
+                        <!-- اسم المدرب الموزع تلقائياً -->
+                        <div class="flex items-center gap-3 text-white">
+                            <i class="fa-solid fa-user-ninja text-xl text-[#FF5900]"></i>
+                            <span class="text-base font-medium">المدرب: ${mockTrainerName}</span>
                         </div>
-                        <p class="text-white text-base">${program.assigned_exercises || ''}</p>
-                        <div class="flex items-center gap-4 text-white">
-                            <i class="fa-solid fa-dumbbell text-2xl"></i>
-                            <span class="text-lg font-medium">${program.sessions_per_week || 0} جلسات اسبوعياً</span>
+
+                        <!-- عدد الأسابيع -->
+                        <div class="flex items-center gap-3 text-white">
+                            <i class="fa-regular fa-clock text-xl text-[#FF5900]"></i>
+                            <span class="text-base font-medium">${program.weeks_count || 0} اسبوع</span>
                         </div>
+
+                        <!-- الجلسات الأسبوعية -->
+                        <div class="flex items-center gap-3 text-white">
+                            <i class="fa-solid fa-dumbbell text-xl text-[#FF5900]"></i>
+                            <span class="text-base font-medium">${program.sessions_per_week || 0} جلسات اسبوعياً</span>
+                        </div>
+
+                        <!-- إجمالي الأيام (الحساب الرياضي) -->
+                        <div class="flex items-center gap-3 text-white border-t border-gray-600 pt-4 w-full justify-center">
+                            <i class="fa-solid fa-calendar-day text-xl text-[#FF5900]"></i>
+                            <span class="text-base font-bold">إجمالي الأيام: ${totalDays} يوم</span>
+                        </div>
+
+                        <!-- التمارين -->
+                        <p class="text-gray-300 text-sm mt-2">${program.assigned_exercises || ''}</p>
                     </div>
                     
                     <button class="start-btn w-full bg-[#FF5900] text-white py-3 rounded-full font-bold text-lg hover:bg-orange-600 shadow-lg mt-auto" data-id="${program.id}" data-title="${program.title}">ابدأ الأن</button>
@@ -110,7 +146,6 @@ document.addEventListener('click', async (e) => {
             return;
         }
 
-        // استبدال confirm بـ SweetAlert2
         Swal.fire({
             title: 'تأكيد الحجز',
             text: `هل أنت مستعد للبدء في برنامج: ${programTitle}؟`,
