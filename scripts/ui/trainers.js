@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             bookBtn.disabled = true;
 
             try {
-                const response = await fetch('https://sportslite.app/api/v1/bookings/', {
+                const response = await fetch('https://api.sportslite.app/api/v1/bookings/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(bookingData)
