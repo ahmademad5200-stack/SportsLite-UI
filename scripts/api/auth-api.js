@@ -1,4 +1,4 @@
-const AUTH_BASE_URL = 'https://sportslite.app/api/v1/auth';
+const AUTH_BASE_URL = 'https://api.sportslite.app/api/v1/auth';
 
 async function loginUser(email, password) {
     try {

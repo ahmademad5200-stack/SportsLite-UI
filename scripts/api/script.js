@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const reviewsContainer = document.getElementById('reviews-container');
 // أضفنا ?t=1 لكسر الكاش
-const apiUrl = 'https://sportslite.app/api/v1/reviews/?t=' + new Date().getTime();
+const apiUrl = 'https://api.sportslite.app/api/v1/reviews/?t=' + new Date().getTime();
 
     fetch(apiUrl)
         .then(response => response.json())

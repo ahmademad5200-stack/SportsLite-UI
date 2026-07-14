@@ -1,6 +1,6 @@
 async function fetchSubscriptionPlans() {
     try {
-        const response = await fetch('https://sportslite.app/api/v1/subscription-plans/');
+        const response = await fetch('https://api.sportslite.app/api/v1/subscription-plans/');
         const result = await response.json();
         
         // بما أن البيانات ليست داخل .data، سنحول الـ object إلى مصفوفة ونحذف مفاتيح الـ status والـ message

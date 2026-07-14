@@ -2,7 +2,7 @@
 async function fetchHealthNews() {
     try {
         // ⚠️ تأكد أن هذا المسار يطابق مسار ملف الـ PHP الخاص بك
-        const response = await fetch('https://sportslite.app/api/v1/news/'); 
+        const response = await fetch('https://api.sportslite.app/api/v1/news/'); 
         const result = await response.json();
 
         if (response.ok && result.data) {

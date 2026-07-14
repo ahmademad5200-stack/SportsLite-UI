@@ -1,6 +1,6 @@
 async function fetchPrograms() {
     try {
-        const response = await fetch('https://sportslite.app/api/v1/training-programs/'); 
+        const response = await fetch('https://api.sportslite.app/api/v1/training-programs/'); 
         const result = await response.json();
         const data = result.data ? result.data : (Array.isArray(result) ? result : []);
         return data;
@@ -12,7 +12,7 @@ async function fetchPrograms() {
 
 async function enrollInProgram(traineeId, programId) {
     try {
-        const response = await fetch('https://sportslite.app/api/v1/trainee-programs/', {
+        const response = await fetch('https://api.sportslite.app/api/v1/trainee-programs/', {
             method: 'POST',
             // تم إزالة الـ headers لتجاوز الفحص الأمني بنجاح
             body: JSON.stringify({ 

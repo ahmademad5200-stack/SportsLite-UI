@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://sportslite.app/api/v1';
+const API_BASE_URL = 'https://api.sportslite.app/api/v1';
 
 async function sendMessageToAPI(payload) {
     try {

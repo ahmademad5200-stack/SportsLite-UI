@@ -1,7 +1,7 @@
 async function fetchTrainers() {
     try {
         // تأكد أن المسار صحيح لملف الـ php
-        const response = await fetch('https://sportslite.app/api/v1/trainers/'); 
+        const response = await fetch('https://api.sportslite.app/api/v1/trainers/'); 
         const result = await response.json();
 
         // بناءً على هيكلة ملف الـ PHP تبعك اللي بيبعت $data

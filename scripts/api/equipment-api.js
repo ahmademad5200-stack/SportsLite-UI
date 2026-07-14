@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 async function fetchEquipment() {
     try {
         // ⚠️ تأكد من وضع الرابط الفعلي للاستضافة الخاصة بك هنا
-        const response = await fetch('https://sportslite.app/api/v1/equipment/'); 
+        const response = await fetch('https://api.sportslite.app/api/v1/equipment/'); 
         
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
