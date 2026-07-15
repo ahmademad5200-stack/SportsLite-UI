@@ -5,21 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>خطط الاشتراك | SportSLite</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="https://res-console.cloudinary.com/df7chxawb/thumbnails/v1/image/upload/v1784038068/bG9nby1zcG9ydHNMaXRlX3VzN3l5eA==/preview">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* إخفاء شريط التمرير للسلايدر مع الحفاظ على إمكانية السحب */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
 <body class="bg-[#121212] text-white">
 
     <div id="header"></div>
 
-    <section class="max-w-6xl mx-auto py-20 px-6">
+    <section class="max-w-7xl mx-auto py-20 px-6 relative">
         <div class="text-center mb-16">
             <h2 class="text-4xl md:text-5xl font-bold mb-4">اختر خطة <span class="text-[#FF5900]">اشتراكك</span></h2>
             <p class="text-gray-400 text-lg">اختر الخطة التي تناسب أهدافك التدريبية وابدأ رحلتك الآن</p>
         </div>
 
-        <div id="plans-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            </div>
+        <!-- أزرار التقليب -->
+        <button id="slide-right" class="absolute right-0 top-[60%] -translate-y-1/2 z-10 bg-[#242424] border border-[#FF5900] text-[#FF5900] hover:bg-[#FF5900] hover:text-white w-12 h-12 rounded-full flex items-center justify-center transition shadow-lg hidden md:flex">
+            <i class="fa-solid fa-chevron-right text-xl"></i>
+        </button>
+
+        <!-- حاوية الكروت (السلايدر) -->
+        <div id="plans-container" class="flex gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar scroll-smooth py-4 px-2">
+            <!-- سيتم حقن الكروت هنا بواسطة الجافاسكريبت -->
+        </div>
+
+        <button id="slide-left" class="absolute left-0 top-[60%] -translate-y-1/2 z-10 bg-[#242424] border border-[#FF5900] text-[#FF5900] hover:bg-[#FF5900] hover:text-white w-12 h-12 rounded-full flex items-center justify-center transition shadow-lg hidden md:flex">
+            <i class="fa-solid fa-chevron-left text-xl"></i>
+        </button>
     </section>
 
     <div id="footer"></div>

@@ -2,7 +2,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginBtn = document.getElementById('login-btn');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('toggle-password'); // جلب عنصر أيقونة العين
 
+    // === كود إظهار/إخفاء كلمة المرور ===
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function () {
+            // التبديل بين نوع text (مرئي) و password (مخفي)
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // تغيير شكل أيقونة العين (تبديل الكلاسات)
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    }
+
+    // === كود تسجيل الدخول الأساسي ===
     loginBtn.addEventListener('click', async () => {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();

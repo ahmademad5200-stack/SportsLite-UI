@@ -4,7 +4,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailInput = document.getElementById('email');
     const phoneInput = document.getElementById('phone');
     const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('toggle-password'); // جلب عنصر أيقونة العين
 
+    // === كود إظهار/إخفاء كلمة المرور ===
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function () {
+            // التبديل بين نوع text (مرئي) و password (مخفي)
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // تغيير شكل أيقونة العين
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    }
+
+    // === كود إنشاء الحساب الأساسي ===
     registerBtn.addEventListener('click', async () => {
         const fullName = fullNameInput.value.trim();
         const email = emailInput.value.trim();
