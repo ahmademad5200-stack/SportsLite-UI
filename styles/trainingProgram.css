@@ -12,3 +12,11 @@ body { font-family: 'Tajawal', sans-serif; background-color: #121212; }
 .shadow-left-bottom {
     box-shadow: -20px 20px 40px rgba(0, 0, 0, 1);
 }
+
+/* إخفاء شريط التمرير للسلايدر مع الحفاظ على إمكانية السحب */
+.hide-scrollbar::-webkit-scrollbar { 
+    display: none; 
+}
+.hide-scrollbar {
+    -ms-overflow-style: none; scrollbar-width: none;
+}
